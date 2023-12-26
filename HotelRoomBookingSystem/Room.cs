@@ -1,0 +1,224 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace HotelRoomBookingSystem
+{
+    public partial class Room : Form
+    {
+        SqlConnection con = new SqlConnection(@"Data Source=U_S_H_A\SQLEXPRESS;Initial Catalog=HotelManagementSystem;Integrated Security=True");
+
+        public Room()
+        {
+            InitializeComponent();
+        }
+        public void populate()
+        {
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("select * from Room", con);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                DataGridRoom.DataSource = dt;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void lbl_fname_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            lbl_date.Text = DateTime.Now.ToLongTimeString();
+
+        }
+
+        private void btn_add_Click(object sender, EventArgs e)
+        {
+            if (txt_phone.Text != string.Empty|| txt_id.Text != string.Empty)
+            {
+                string roomfree;
+                if (rb_free.Checked == true)
+                
+                    roomfree = "Free";
+                
+                else
+                
+                    roomfree = "Busy";
+
+                
+
+                con.Open();
+                // string theDate = txt_dob.Value.ToString("yyyy-MM-dd");
+                SqlCommand cmd = new SqlCommand("insert into Room(RoomId,RoomPhone,RoomStatus) values('" + txt_id.Text + "', '" + txt_phone.Text + "', '" + roomfree + "')", con);
+                int result = cmd.ExecuteNonQuery();
+                con.Close();
+                if (result > 0)
+                    MessageBox.Show("Data saved.", "Sucess", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show("Not Saved", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+                txt_id.Clear();
+                txt_phone.Clear();
+                rb_busy.Checked = false;
+                rb_free.Checked = false;
+
+
+
+
+                populate();
+            }
+            else
+            {
+                MessageBox.Show("Empty field not Allowed", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+        }
+
+        private void DataGridRoom_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = DataGridRoom.Rows[e.RowIndex];
+                txt_id.Text = row.Cells[0].Value.ToString();
+                txt_phone.Text = row.Cells[1].Value.ToString();
+                //if (Convert.ToBoolean(rb_free) == true)
+                //{
+                //    rb_free.Text = row.Cells[2].Value.ToString();
+
+                //}
+                //else
+                //{
+                //    rb_busy.Text = row.Cells[2].Value.ToString();
+
+                //}
+
+
+
+            }
+        }
+
+        private void btn_edit_Click(object sender, EventArgs e)
+        {
+            if (txt_phone.Text != string.Empty || txt_id.Text != string.Empty)
+
+            {
+                string roomfree;
+                if (rb_free.Checked == true)
+
+                    roomfree = "Free";
+
+                else
+
+                    roomfree = "Busy";
+                con.Open();
+                // string theDate = txt_dob.Value.ToString("yyyy-MM-dd");
+                SqlCommand cmd = new SqlCommand("UPDATE Room SET  RoomPhone='" + txt_phone.Text + "',RoomStatus='" + roomfree + "' where RoomId='" + txt_id.Text + "'", con);
+               // populate();
+
+                int result = cmd.ExecuteNonQuery();
+                con.Close();
+                if (result > 0)
+                    MessageBox.Show("Data Edit.", "Sucess", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show("Not Edit", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+                txt_id.Clear();
+                txt_phone.Clear();
+                rb_busy.Checked = false;
+                rb_free.Checked = false;
+                
+                populate();
+            }
+            else
+            {
+                MessageBox.Show("Empty field not Allowed", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+        }
+
+        private void btn_delete_Click(object sender, EventArgs e)
+        {
+            con.Open();
+            SqlCommand cmd = new SqlCommand("delete from Room where RoomId='" + txt_id.Text + "'", con);
+            cmd.ExecuteNonQuery();
+            MessageBox.Show("Data Deleted Successfully.");
+            con.Close();
+            populate();
+        }
+
+        private void pic_datareset_Click(object sender, EventArgs e)
+        {
+            if (txt_phone.Text != string.Empty || txt_id.Text != string.Empty)
+
+            {
+                
+                txt_id.Clear();
+                txt_phone.Clear();
+                rb_busy.Checked = false;
+                rb_free.Checked = false;
+
+
+
+
+            }
+        }
+
+        private void btn_searchname_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                con.Open();
+                // txt_fname.Text = txt_fname.Text + " " + txt_lname.Text;
+                SqlCommand cmd = new SqlCommand("Select * from  Room where RoomId LIKE '" + txt_searchname.Text + "%'", con);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                DataGridRoom.DataSource = dt;
+                con.Close();
+                // populate();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void pc_reset_Click(object sender, EventArgs e)
+        {
+            populate();
+        }
+
+        private void Room_Load(object sender, EventArgs e)
+        {
+            lbl_date.Text = DateTime.Now.ToLongTimeString();
+            timer1.Start();
+            populate();
+        }
+
+        private void Back_Click(object sender, EventArgs e)
+        {
+            MainForm mn = new MainForm();
+            mn.Show();
+            this.Hide();
+        }
+    }
+}
