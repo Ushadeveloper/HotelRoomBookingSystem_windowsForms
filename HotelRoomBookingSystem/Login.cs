@@ -78,6 +78,7 @@ namespace HotelRoomBookingSystem
                     this.Hide();
                     MainForm fm = new MainForm();
                     fm.Show();
+                    //show main form
                 }
                 else
                 {
