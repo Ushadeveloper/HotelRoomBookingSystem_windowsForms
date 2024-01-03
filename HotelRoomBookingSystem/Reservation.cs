@@ -102,13 +102,16 @@ namespace HotelRoomBookingSystem
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            lbl_date.Text = DateTime.Now.ToLongTimeString();
+            // lbl_date.Text = DateTime.Now.ToLongTimeString();
+            //lbl_date.Text = DateTime.Today.Month.ToString();
+            lbl_date.Text = DateTime.Today.Day.ToString() + DateTime.Today.Month.ToString() + DateTime.Today.Year.ToString();
+
+
 
         }
 
         private void Reservation_Load(object sender, EventArgs e)
         {
-            lbl_date.Text = DateTime.Today.Day.ToString()+ DateTime.Today.Month.ToString() + DateTime.Today.Year.ToString() ;
             timer1.Start();
             fillroomcb();
             fillguestcb();

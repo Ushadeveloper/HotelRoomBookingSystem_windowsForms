@@ -32,6 +32,7 @@ namespace HotelRoomBookingSystem
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Reservation));
             this.panel_res = new System.Windows.Forms.Panel();
+            this.Back = new System.Windows.Forms.PictureBox();
             this.lbl_date = new System.Windows.Forms.Label();
             this.lbl_resinfo = new System.Windows.Forms.Label();
             this.gpbox_res = new System.Windows.Forms.GroupBox();
@@ -55,13 +56,12 @@ namespace HotelRoomBookingSystem
             this.lbl_name_search = new System.Windows.Forms.Label();
             this.DataGridRes = new System.Windows.Forms.DataGridView();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.Back = new System.Windows.Forms.PictureBox();
             this.panel_res.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Back)).BeginInit();
             this.gpbox_res.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_datareset)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pc_reset)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridRes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Back)).BeginInit();
             this.SuspendLayout();
             // 
             // panel_res
@@ -76,12 +76,23 @@ namespace HotelRoomBookingSystem
             this.panel_res.Size = new System.Drawing.Size(1291, 110);
             this.panel_res.TabIndex = 3;
             // 
+            // Back
+            // 
+            this.Back.Image = ((System.Drawing.Image)(resources.GetObject("Back.Image")));
+            this.Back.Location = new System.Drawing.Point(33, 24);
+            this.Back.Name = "Back";
+            this.Back.Size = new System.Drawing.Size(76, 61);
+            this.Back.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Back.TabIndex = 24;
+            this.Back.TabStop = false;
+            this.Back.Click += new System.EventHandler(this.Back_Click);
+            // 
             // lbl_date
             // 
             this.lbl_date.AutoSize = true;
             this.lbl_date.Font = new System.Drawing.Font("Gadugi", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_date.ForeColor = System.Drawing.SystemColors.Window;
-            this.lbl_date.Location = new System.Drawing.Point(1151, 60);
+            this.lbl_date.Location = new System.Drawing.Point(1079, 51);
             this.lbl_date.Name = "lbl_date";
             this.lbl_date.Size = new System.Drawing.Size(77, 34);
             this.lbl_date.TabIndex = 0;
@@ -316,9 +327,9 @@ namespace HotelRoomBookingSystem
             this.lbl_name_search.Font = new System.Drawing.Font("Bodoni MT Condensed", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_name_search.Location = new System.Drawing.Point(576, 132);
             this.lbl_name_search.Name = "lbl_name_search";
-            this.lbl_name_search.Size = new System.Drawing.Size(80, 28);
+            this.lbl_name_search.Size = new System.Drawing.Size(61, 28);
             this.lbl_name_search.TabIndex = 20;
-            this.lbl_name_search.Text = "Room ID";
+            this.lbl_name_search.Text = "Res ID";
             // 
             // DataGridRes
             // 
@@ -334,17 +345,6 @@ namespace HotelRoomBookingSystem
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // Back
-            // 
-            this.Back.Image = ((System.Drawing.Image)(resources.GetObject("Back.Image")));
-            this.Back.Location = new System.Drawing.Point(33, 24);
-            this.Back.Name = "Back";
-            this.Back.Size = new System.Drawing.Size(76, 61);
-            this.Back.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.Back.TabIndex = 24;
-            this.Back.TabStop = false;
-            this.Back.Click += new System.EventHandler(this.Back_Click);
             // 
             // Reservation
             // 
@@ -364,12 +364,12 @@ namespace HotelRoomBookingSystem
             this.Load += new System.EventHandler(this.Reservation_Load);
             this.panel_res.ResumeLayout(false);
             this.panel_res.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Back)).EndInit();
             this.gpbox_res.ResumeLayout(false);
             this.gpbox_res.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_datareset)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pc_reset)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridRes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Back)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

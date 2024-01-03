@@ -32,6 +32,7 @@ namespace HotelRoomBookingSystem
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Room));
             this.panel_guest = new System.Windows.Forms.Panel();
+            this.Back = new System.Windows.Forms.PictureBox();
             this.lbl_date = new System.Windows.Forms.Label();
             this.lbl_roominfo = new System.Windows.Forms.Label();
             this.gpbox_staff = new System.Windows.Forms.GroupBox();
@@ -54,13 +55,12 @@ namespace HotelRoomBookingSystem
             this.lbl_name_search = new System.Windows.Forms.Label();
             this.DataGridRoom = new System.Windows.Forms.DataGridView();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.Back = new System.Windows.Forms.PictureBox();
             this.panel_guest.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Back)).BeginInit();
             this.gpbox_staff.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_datareset)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pc_reset)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridRoom)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Back)).BeginInit();
             this.SuspendLayout();
             // 
             // panel_guest
@@ -75,12 +75,23 @@ namespace HotelRoomBookingSystem
             this.panel_guest.Size = new System.Drawing.Size(1291, 107);
             this.panel_guest.TabIndex = 2;
             // 
+            // Back
+            // 
+            this.Back.Image = ((System.Drawing.Image)(resources.GetObject("Back.Image")));
+            this.Back.Location = new System.Drawing.Point(33, 22);
+            this.Back.Name = "Back";
+            this.Back.Size = new System.Drawing.Size(76, 61);
+            this.Back.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Back.TabIndex = 25;
+            this.Back.TabStop = false;
+            this.Back.Click += new System.EventHandler(this.Back_Click);
+            // 
             // lbl_date
             // 
             this.lbl_date.AutoSize = true;
             this.lbl_date.Font = new System.Drawing.Font("Gadugi", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_date.ForeColor = System.Drawing.SystemColors.Window;
-            this.lbl_date.Location = new System.Drawing.Point(1151, 60);
+            this.lbl_date.Location = new System.Drawing.Point(1053, 49);
             this.lbl_date.Name = "lbl_date";
             this.lbl_date.Size = new System.Drawing.Size(77, 34);
             this.lbl_date.TabIndex = 0;
@@ -325,17 +336,6 @@ namespace HotelRoomBookingSystem
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // Back
-            // 
-            this.Back.Image = ((System.Drawing.Image)(resources.GetObject("Back.Image")));
-            this.Back.Location = new System.Drawing.Point(33, 22);
-            this.Back.Name = "Back";
-            this.Back.Size = new System.Drawing.Size(76, 61);
-            this.Back.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.Back.TabIndex = 25;
-            this.Back.TabStop = false;
-            this.Back.Click += new System.EventHandler(this.Back_Click);
-            // 
             // Room
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -354,12 +354,12 @@ namespace HotelRoomBookingSystem
             this.Load += new System.EventHandler(this.Room_Load);
             this.panel_guest.ResumeLayout(false);
             this.panel_guest.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Back)).EndInit();
             this.gpbox_staff.ResumeLayout(false);
             this.gpbox_staff.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_datareset)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pc_reset)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridRoom)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Back)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
